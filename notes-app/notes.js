@@ -27,11 +27,13 @@ const addNote = (title, body) => {
             body: body
         })
         saveNotes(notes)
-        console.log(chalk.green.inverse("New Note Added"))
+        console.log("                    LOG:")
+        console.log(chalk.green.inverse("          The note '"+chalk.bold(title)+"' successfully added          "))
 
     }
     else {
-        console.log(chalk.red.inverse("Note title taken"))
+        console.log("                    LOG:")
+        console.log(chalk.red.inverse("     Note with the title '"+chalk.bold(title)+"' already taken     "))
     }
 }
 
@@ -40,13 +42,13 @@ const removeNote =  (title) => {
     const titleQuery = notes.filter( (note) => note.title !== title)
 
     if (notes.length > titleQuery.length ){
-        console.log(chalk.green.inverse("Note removed"))
+        console.log(chalk.blue.inverse("     The note '"+chalk.bold(title)+"' removed successfully     "))
         saveNotes(titleQuery)
 
 
     }
     else{
-        console.log(chalk.red.inverse("No note found"))
+        console.log(chalk.red.inverse("     Note with the title '"+chalk.bold(title)+"' does not exist     "))
 
     }
 
@@ -59,10 +61,14 @@ const listNotes = ()=>{
     const notes = loadNotes()
 
 
-    console.log(chalk.inverse("Your Notes"))
-
+    console.log(chalk.inverse("                     Your Notes                     |"))
+    var num = 1
+    if (notes.length == 0){
+        console.log(chalk.red("                    NO NOTES YET"))
+    } 
     notes.forEach((note) =>{
-        console.log(note.title)
+        console.log("                 ("+num+") "+ note.title)
+        num = num+1
     })
 }
 
@@ -71,8 +77,9 @@ const readNote =(title) =>{
     const note = notes.find((note) => note.title ===title )
 
     if (note){
-        console.log(chalk.inverse(note.title))
-        console.log(note.body)
+        console.log("                  Reading Note")
+        console.log("Title: "+chalk.inverse(note.title))
+        console.log("Body: "+chalk.inverse(note.body))
 
     }
     else{

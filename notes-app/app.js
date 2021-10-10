@@ -4,6 +4,13 @@ const chalk = require('chalk')
 const yargs = require('yargs')
 // console.log("test")
 yargs.version('1.1.0')
+console.log("_____________________________________________________")
+console.log("|                  "+ chalk.inverse.yellow("   Note-app   ") +"                   |")
+console.log("|                                                   |")
+console.log("|  A note-taking application created usign Node.JS  |")
+console.log("|___________________________________________________|")
+console.log("")
+
 
 // const msg = getNotes()
 // console.log(msg)
@@ -25,7 +32,6 @@ yargs.version('1.1.0')
 
 
 // #########################################
-
 
 
 // CREATE A ADD COMMAND
@@ -76,7 +82,6 @@ yargs.command({
     },
 
     handler (argv){
-        console.log('Removing a note')
         notes.removeNote(argv.title)
     }
 })
